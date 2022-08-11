@@ -1,10 +1,13 @@
-import sys
+# 문제 기본 입력
+N = int(input())
+arr = list(map(int, input().split()))
 
-input = sys.stdin.readline
+# 요소 하나씩 제거
+cnt = 0
+temp = []
+tempList = arr
+# 누적합 리스트 생성
 
-T = int(input())
-for i in range(T):
-    N, M = map(int, input().split())
-    U = M * 2 - N
-    T = M - U
-    print(U, T)
+
+# 문제 풀이
+print(cnt)
