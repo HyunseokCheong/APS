@@ -1,5 +1,4 @@
-T = int(input())
-for tc in range(T):
+for tc in range(int(input())):
     word = input()
     N = len(word)
     ans = 1
