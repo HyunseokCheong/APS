@@ -1,4 +1,5 @@
 N = int(input())
+
 maxLen = 0
 maxArr = []
 for i in range(N + 1):
