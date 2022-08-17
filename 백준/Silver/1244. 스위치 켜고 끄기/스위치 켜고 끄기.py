@@ -8,8 +8,8 @@ def onoff(num):
 
 N = int(input())
 switch_list = [-1] + list(map(int, input().split()))
-students = int(input())
-for i in range(students):
+student = int(input())
+for i in range(student):
     mf, target = map(int, input().split())
     if mf == 1:
         for j in range(target, N + 1, target):
