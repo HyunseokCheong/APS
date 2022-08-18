@@ -1,13 +1,17 @@
-# 문제 기본 입력
+# 입력
 N, K = map(int, input().split())
-tempList = list(map(int, input().split()))
+nums = list(map(int, input().split()))
 
-# 누적합 리스트 생성
-sumTempList = sum(tempList[:K])
-result = sumTempList
+# 구현
+sum_temp_list = 0
+for i in range(0, K):
+    sum_temp_list += nums[i]
+result = sum_temp_list
+
 for i in range(K, N):
-    sumTempList += tempList[i] - tempList[i - K]
-    result = max(result, sumTempList)
+    sum_temp_list += nums[i] - nums[i - K]
+    if result < sum_temp_list:
+        result = sum_temp_list
 
-# 문제 풀이
+# 출력
 print(result)
