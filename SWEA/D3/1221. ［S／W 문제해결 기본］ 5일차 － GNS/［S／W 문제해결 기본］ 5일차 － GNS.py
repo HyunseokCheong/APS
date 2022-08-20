@@ -1,13 +1,14 @@
-nums = ["ZRO", "ONE", "TWO", "THR", "FOR", "FIV", "SIX", "SVN", "EGT", "NIN"]
+num_list = ["ZRO", "ONE", "TWO", "THR", "FOR", "FIV", "SIX", "SVN", "EGT", "NIN"]
 
 for _ in range(int(input())):
     tc, N = input().split()
-    N = int(N)
-    arr = list(input().split())
-    temp = []
-    for i in nums:
-        for j in range(0, N):
-            if i == arr[j]:
-                temp.append(i)
+    nums = list(input().split())
+
+    answer = []
+    for i in num_list:
+        for j in nums:
+            if i == j:
+                answer.append(j)
+
     print(tc)
-    print(*temp)
+    print(*answer)
