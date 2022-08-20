@@ -4,7 +4,7 @@ for tc in range(int(input())):
     i = 0
     cnt = 0
 
-    while i <= len(A):
+    while i != len(A):
         if A[i:i + len(B)] == B:
             cnt += 1
             i += len(B)
@@ -12,4 +12,4 @@ for tc in range(int(input())):
         cnt += 1
         i += 1
 
-    print(f'#{tc + 1} {cnt - 1}')
+    print(f'#{tc + 1} {cnt}')
