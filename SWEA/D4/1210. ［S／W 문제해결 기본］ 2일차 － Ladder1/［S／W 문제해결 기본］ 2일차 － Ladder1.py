@@ -1,38 +1,38 @@
+# 방향 설정 상 우 좌
 dr = [-1, 0, 0]
 dc = [0, 1, -1]
 
-# 입력
-for _ in range(10):
-    tc = int(input())
-    ladder = [[0] + list(map(int, input().split())) + [0] for i in range(100)]
-    # 초기 위치, 방향 설정
-    row = 99
-    column = 0
-    for i in range(0, 102):
-        if ladder[row][i] == 2:
-            column = i
+for tc in range(10):
+    T = int(input())
+    ladder = [[0] + list(map(int, input().split())) + [0] for _ in range(100)]
+
+    # 진로, 위치 설정
     direction = 0
+    row = 99
+    col = 0
+    for i in range(1, 101):
+        if ladder[row][i] == 2:
+            col = i
+
     # 출발
-    while True:
-        # 도착
-        if row == 0:
-            break
-        # 좌로 이동
-        if ladder[row][column - 1] == 1:
-            direction = 2
-            while True:
-                column += dc[direction]
-                if ladder[row][column - 1] == 0:
-                    break
-        # 우로 이동
-        elif ladder[row][column + 1] == 1:
+    while row != 0:
+        # 우
+        if ladder[row][col + 1] == 1:
             direction = 1
             while True:
-                column += dc[direction]
-                if ladder[row][column + 1] == 0:
+                col += dc[direction]
+                if ladder[row][col + 1] == 0:
                     break
-        # 위로 이동
+        # 좌
+        elif ladder[row][col - 1] == 1:
+            direction = 2
+            while True:
+                col += dc[direction]
+                if ladder[row][col - 1] == 0:
+                    break
+        # 상
         direction = 0
         row += dr[direction]
-        column += dc[direction]
-    print(f'#{tc} {column - 1}')
+
+    # 출력
+    print(f'#{tc + 1} {col - 1}')
