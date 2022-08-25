@@ -1,8 +1,9 @@
 N = int(input())
 nums = list(map(int, input().split()))
+line = list(i for i in range(1, N + 1))
 
-board = []
-for i in range(0, N):
-    board.insert(i - nums[i], i + 1)
+for i in range(N):
+    for j in range(i, i - nums[i], -1):
+        line[j], line[j - 1] = line[j - 1], line[j]
 
-print(*board)
+print(*line)
