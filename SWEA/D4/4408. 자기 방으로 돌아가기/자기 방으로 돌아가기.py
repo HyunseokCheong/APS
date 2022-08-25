@@ -1,6 +1,6 @@
 for tc in range(int(input())):
     N = int(input())
-    way = [0] * 400
+    way = [0] * 201
     for i in range(N):
         X, Y = map(int, input().split())
         if X <= Y:
