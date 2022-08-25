@@ -1,34 +1,30 @@
-N = int(input())
-M = 10
+# 입력
+N = int(input()) + 1
 sign = list(input().split())
-visited = [False for i in range(M)]
-max_val = ''
-min_val = ''
+
+visited = [False] * 10
+temp = []
 
 
-def compare(i, j, k):
-    if k == '<':
-        return i < j
+def compare(a, b, c):
+    if c == '<':
+        return a < b
     else:
-        return i > j
-    # return True
+        return a > b
 
 
-def bt(cnt, word):
-    global max_val, min_val
-    if cnt == N + 1:
-        if not len(min_val):
-            min_val = word
-        else:
-            max_val = word
+def recur(depth, ans):
+    if depth == N:
+        temp.append(ans)
         return
-    for i in range(M):
-        if not visited[i]:
-            if cnt == 0 or compare(word[-1], str(i), sign[cnt - 1]):
-                visited[i] = True
-                bt(cnt + 1, word + str(i))
-                visited[i] = False
+    for i in range(10):
+        if visited[i]:
+            continue
+        if depth == 0 or compare(ans[depth - 1], str(i), sign[depth - 1]):
+            visited[i] = True
+            recur(depth + 1, ans + str(i))
+            visited[i] = False
 
-bt(0, '')
-print(max_val)
-print(min_val)
+recur(0, '')
+print(temp[-1])
+print(temp[0])
