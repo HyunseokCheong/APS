@@ -4,11 +4,13 @@ def recur3(cur, start):
         print(*arr)
         return
     for i in range(start, M):
-        arr[cur] = i + 1
-        recur3(cur + 1, i + 1)
+        arr[cur] = nums[i]
+        recur3(cur + 1, i)
 
 
 M, N = map(int, input().split())
+nums = list(map(int, input().split()))
+nums.sort()
 arr = [0 for i in range(N)]
 
 recur3(0, 0)
