@@ -1,13 +1,19 @@
 for tc in range(int(input())):
     N = int(input())
+    board = [list(input()) for _ in range(N)]
 
-    answer = 0
+    M = N // 2
+    S = E = M
+    ans = 0
+
     for i in range(N):
-        word = input()
-        if i > N // 2:
-            i = i - (2 * (i - N // 2))
-        if i <= N // 2:
-            for j in range(N // 2 - i, N // 2 + i + 1):
-                answer += int(word[j])
-    
-    print(f'#{tc + 1} {answer}')
+        for j in range(S, E + 1):
+            ans += int(board[i][j])
+        if i < M:
+            S -= 1
+            E += 1
+        else:
+            S += 1
+            E -= 1
+
+    print(f'#{tc + 1} {ans}')
