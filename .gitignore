@@ -1,7 +1,11 @@
+.gitignore
+
 venv/
 .idea/
 .DS_Store/
+production/
 
 venv
 .idea
 .DS_Store
+production
