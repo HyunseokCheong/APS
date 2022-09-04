@@ -14,7 +14,7 @@
 
 <p>2차원 좌표 상의 여러 점의 좌표 (x,y)가 주어졌을 때, 각 사분면과 축에 점이 몇 개 있는지 구하는 프로그램을 작성하시오.</p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/images/quad.png" style="height:190px; width:292px"></p>
+<p><img alt="" src="" style="height:190px; width:292px"></p>
 
 ### 입력 
 
