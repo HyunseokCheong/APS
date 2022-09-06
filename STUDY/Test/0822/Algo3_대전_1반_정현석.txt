@@ -1,0 +1,35 @@
+3-1.
+1. 스택은 자료를 저장하고 꺼낼 수 있는 자료 구조로써 push, pop 등으로 조작 가능하다.
+2. 선형의 뮤터블 자료구조이다.
+3. 나중에 넣은 자료를 먼저 꺼내는 후입선출(LIFO) 구조이다.
+
+3-2.
+정답: ADCFA
+
+풀이과정:
+push(A)
+stack = [A]
+
+push(B)
+stack = [A, B]
+
+pop()
+stack = [A]
+
+push(D)
+stack = [A, D]
+
+push(C)
+stack = [A, D, C]
+
+push(F)
+stack = [A, D, C, F]
+
+push(E)
+stack = [A, D, C, F, E]
+
+pop()
+stack = [A, D, C, F]
+
+push(A)
+stack = [A, D, C, F, A]
