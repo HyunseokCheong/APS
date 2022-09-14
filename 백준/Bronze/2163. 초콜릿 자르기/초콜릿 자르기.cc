@@ -1,0 +1,11 @@
+#include <iostream>
+
+using namespace std;
+int main(int argc, char const *argv[]) {
+	int N, M;
+
+	cin >> N >> M;
+
+	cout << (N - 1) + (N * (M - 1));
+	return 0;
+}
