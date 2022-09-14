@@ -1,5 +1,0 @@
-X, Y = map(int, input().split())
-X = int(str(X)[::-1])
-Y = int(str(Y)[::-1])
-Z = int(str(X + Y)[::-1])
-print(Z)
