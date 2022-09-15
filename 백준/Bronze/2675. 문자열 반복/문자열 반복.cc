@@ -10,9 +10,9 @@ int main() {
         string s;
         cin >> r >> s;
 
-        for (int j = 0; j < s.length(); ++j) {
+        for (char j : s) {
             for (int k = 0; k < r; ++k) {
-                cout << s[j];
+                cout << j;
             }
         }
         cout << "\n";
