@@ -19,11 +19,6 @@ for tc in range(int(input())):
         elif int(temp) != 0:
             nums = temp
 
-    # 암호가 없는 경우
-    if nums == 0:
-        print(f'#{tc + 1} {0}')
-        continue
-
     # 암호 열 찾기
     end_idx = 0
     for idx in range(len(nums) - 1, -1, -1):
