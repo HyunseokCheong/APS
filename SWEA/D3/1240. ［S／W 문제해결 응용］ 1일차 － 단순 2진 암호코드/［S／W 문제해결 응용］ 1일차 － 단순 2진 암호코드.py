@@ -14,7 +14,9 @@ for tc in range(int(input())):
     nums = 0
     for i in range(N):
         temp = input()
-        if int(temp) != 0:
+        if nums != 0:
+            continue
+        elif int(temp) != 0:
             nums = temp
 
     # 암호가 없는 경우
