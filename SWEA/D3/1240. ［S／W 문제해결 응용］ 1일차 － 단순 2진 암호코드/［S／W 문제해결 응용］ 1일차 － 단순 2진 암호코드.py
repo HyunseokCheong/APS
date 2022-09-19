@@ -6,6 +6,7 @@ pwd = {
     '0001101': 0, '0011001': 1, '0010011': 2, '0111101': 3, '0100011': 4,
     '0110001': 5, '0101111': 6, '0111011': 7, '0110111': 8, '0001011': 9
 }
+ans = []
 
 for tc in range(int(input())):
     N, M = map(int, input().split())
@@ -35,6 +36,9 @@ for tc in range(int(input())):
     even = codes[1] + codes[3] + codes[5] + codes[7]
 
     if (odd * 3 + even) % 10 != 0:
-        print(f'#{tc + 1} {0}')
+        ans.append([tc + 1, 0])
     else:
-        print(f'#{tc + 1} {odd + even}')
+        ans.append([tc + 1, odd + even])
+
+for i in ans:
+    print(f'#{i[0]} {i[1]}')
