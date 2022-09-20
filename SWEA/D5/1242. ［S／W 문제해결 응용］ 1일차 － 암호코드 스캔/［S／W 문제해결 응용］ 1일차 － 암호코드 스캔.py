@@ -8,9 +8,8 @@
 code = {(2, 1, 1): 0, (2, 2, 1): 1, (1, 2, 2): 2, (4, 1, 1): 3, (1, 3, 2): 4, (2, 3, 1): 5, (1, 1, 4): 6, (3, 1, 2): 7,
         (2, 1, 3): 8, (1, 1, 2): 9,
         }
-output = []
-T = int(input())
-for tc in range(T):
+
+for tc in range(int(input())):
     row, col = map(int, input().split())
     # 1. 16진수 찾기
     target_hex = sorted(list(set([input() for _ in range(row)])))[1:]
@@ -53,7 +52,4 @@ for tc in range(T):
                 elif cnt % 2 == 1:
                     odd += target_dec
                 r1 = r2 = r3 = 0
-    output.append(ans)
-
-for i in range(T):
-    print(f'#{i + 1} {output[i]}')
+    print(f'#{tc + 1} {ans}')
