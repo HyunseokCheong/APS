@@ -7,10 +7,12 @@ def eratos(num):
     return prime
 
 
+prime_list = eratos(1000000)
+
 t = int(input())
 for tc in range(t):
     n = int(input())
-    prime_list = eratos(n)
+
     cnt = 0
     for k in range(2, n // 2 + 1):
         if prime_list[k] and prime_list[n - k]:
