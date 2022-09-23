@@ -6,9 +6,7 @@ dy = [1, -1, 0, 0]
 def dfs(x, y, s):
     # 종료
     if len(s) == 7:
-        # 중복 체크
-        if s not in result:
-            result.append(s)
+        result.add(s)
         return
     for i in range(4):
         nx = x + dx[i]
@@ -22,7 +20,7 @@ t = int(input())
 for tc in range(t):
     mat = [list(input().split()) for _ in range(4)]
 
-    result = []
+    result = set()
 
     # 4X4 탐색
     for j in range(4):
