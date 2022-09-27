@@ -1,25 +1,20 @@
+def dfs(depth, value):
+    global mnv
+    if value >= b:
+        mnv = min(mnv, value)
+        return
+    for i in range(depth, n):
+        if visited[i] == 0 and value + arr[i] < mnv:
+            visited[i] = 1
+            dfs(i + 1, value + arr[i])
+            visited[i] = 0
+
+
 t = int(input())
 for tc in range(t):
     n, b = map(int, input().split())
-    h = list(map(int, input().split()))
-
+    arr = list(map(int, input().split()))
+    visited = [0] * (n + 1)
     mnv = 1e9
-    temp = []
-
-    for i in range(n):
-        temp.append(h[i])
-        if h[i] == b:
-            mnv = h[i]
-            break
-        for j in range(len(temp) - 1):
-            res = h[i] + temp[j]
-            if res == b:
-                mnv = res
-                break
-            elif res < b:
-                temp.append(res)
-            elif b <= res < mnv:
-                mnv = res
-        if mnv == b:
-            break
+    dfs(0, 0)
     print(f'#{tc + 1} {mnv - b}')
