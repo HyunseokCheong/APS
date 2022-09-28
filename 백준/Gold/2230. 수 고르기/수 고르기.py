@@ -1,21 +1,28 @@
 import sys
 
+input = sys.stdin.readline
+
 n, m = map(int, input().split())
 arr = [0] * n
 for i in range(n):
     arr[i] = int(input())
 arr.sort()
-left, right = 0, 1
-mnv = sys.maxsize
 
-while left < n and right < n:
-    res = arr[right] - arr[left]
+mnv = sys.maxsize
+s, e = 0, 1
+
+while s < n and e < n:
+    res = arr[e] - arr[s]
+
     if res == m:
         print(res)
         exit()
-    if res < m:
-        right += 1
-        continue
-    left += 1
-    mnv = min(mnv, res)
+
+    elif res < m:
+        e += 1
+
+    elif res > m:
+        mnv = min(mnv, res)
+        s += 1
+
 print(mnv)
