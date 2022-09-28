@@ -9,7 +9,7 @@ for i in range(n):
 arr.sort()
 
 mnv = sys.maxsize
-s, e = 0, 1
+s, e = 0, 0
 
 while s < n and e < n:
     res = arr[e] - arr[s]
