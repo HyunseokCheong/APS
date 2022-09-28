@@ -1,20 +1,19 @@
 n, s = map(int, input().split())
 arr = list(map(int, input().split()))
 
-left, right = 0, 1
+l, r = 0, 1
 val = arr[0]
 ans = 0
-while left < n and right <= n:
+while l < n and r <= n:
     if val < s:
-        if right < n:
-            val += arr[right]
-            right += 1
+        if r < n:
+            val += arr[r]
+            r += 1
         else:
             break
     elif val >= s:
-        if right - left < ans or ans == 0:
-            ans = right - left
-        val -= arr[left]
-        left += 1
-
+        if r - l < ans or ans == 0:
+            ans = r - l
+        val -= arr[l]
+        l += 1
 print(ans)
