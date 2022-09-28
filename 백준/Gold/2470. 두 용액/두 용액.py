@@ -1,22 +1,27 @@
+import sys
+
+input = sys.stdin.readline
 n = int(input())
 arr = sorted(list(map(int, input().split())))
 
-s = 0
-e = n - 1
-
-mnv = 2e+9 + 1
+s, e = 0, n - 1
+mnv = sys.maxsize
 ans = []
 
 while s < e:
     res = arr[s] + arr[e]
+
     if res == 0:
-        print(arr[s], arr[e])
-        exit()
+        ans = [arr[s], arr[e]]
+        break
+
     if abs(res) < mnv:
         mnv = abs(res)
         ans = [arr[s], arr[e]]
+
     if res < 0:
         s += 1
     else:
         e -= 1
+
 print(*ans)
