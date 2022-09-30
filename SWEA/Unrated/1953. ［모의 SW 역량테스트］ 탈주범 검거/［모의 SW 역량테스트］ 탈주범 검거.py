@@ -1,8 +1,8 @@
 from collections import deque
 
 
-def check(y, x, idx):
-    return 0 <= y < n and 0 <= x < m and arr[y][x] and visited[y][x] == 0 and rev[idx] in pipe[arr[y][x]]
+def isok(y, x, idx):
+    return 0 <= y < n and 0 <= x < m and arr[y][x] and vis[y][x] == 0 and rev[idx] in pipe[arr[y][x]]
 
 
 def bfs():
@@ -11,13 +11,13 @@ def bfs():
         for i in pipe[arr[r][c]]:
             nr = r + dr[i]
             nc = c + dc[i]
-            if check(nr, nc, i):
+            if isok(nr, nc, i):
                 q.append((nr, nc))
-                visited[nr][nc] = visited[r][c] + 1
+                vis[nr][nc] = vis[r][c] + 1
     cnt = 0
     for i in range(n):
         for j in range(m):
-            if visited[i][j] and visited[i][j] <= l:
+            if vis[i][j] and vis[i][j] <= l:
                 cnt += 1
     return cnt
 
@@ -32,9 +32,9 @@ t = int(input())
 for tc in range(t):
     n, m, r, c, l = map(int, input().split())
     arr = [list(map(int, input().split())) for _ in range(n)]
-    visited = [[0] * m for _ in range(n)]
+    vis = [[0] * m for _ in range(n)]
     q = deque()
     q.append((r, c))
-    visited[r][c] = 1
+    vis[r][c] = 1
     ans = bfs()
     print(f'#{tc + 1} {ans}')
