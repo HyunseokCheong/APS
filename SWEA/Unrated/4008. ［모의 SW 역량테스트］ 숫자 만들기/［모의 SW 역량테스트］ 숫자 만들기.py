@@ -20,7 +20,6 @@ for tc in range(t):
 
     mnv = 1e9
     mxv = -1e9
-    visited = [0] * n
 
     dfs(1, num[0])
     print(f'#{tc + 1} {mxv - mnv}')
