@@ -4,7 +4,8 @@ def dfs(depth, value):
         mnv = min(mnv, value)
         mxv = max(mxv, value)
         return
-    calc = [value + num[depth], value - num[depth], value * num[depth], int(value / num[depth])]
+    res = num[depth]
+    calc = [value + res, value - res, value * res, int(value / res)]
     for i in range(4):
         if opr[i] > 0:
             opr[i] -= 1
