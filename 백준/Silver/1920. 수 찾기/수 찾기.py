@@ -1,20 +1,21 @@
-def binary_search(arr, x):
-    s, e = 0, len(arr) - 1
-    while s <= e:
-        mid = (s + e) // 2
-        if arr[mid] == x:
-            return 1
-        elif arr[mid] < x:
-            s = mid + 1
-        else:
-            e = mid - 1
-    return 0
-
-
 n = int(input())
-arr_n = sorted(list(map(int, input().split())))
+arr_n = list(map(int, input().split()))
 m = int(input())
 arr_m = list(map(int, input().split()))
 
-for i in arr_m:
-    print(binary_search(arr_n, i))
+arr_n.sort()
+
+for i in range(m):
+    s = 0
+    e = n - 1
+    while s <= e:
+        mid = (s + e) // 2
+        if arr_n[mid] == arr_m[i]:
+            print(1)
+            break
+        elif arr_n[mid] > arr_m[i]:
+            e = mid - 1
+        else:
+            s = mid + 1
+    else:
+        print(0)
