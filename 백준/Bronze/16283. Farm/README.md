@@ -1,4 +1,4 @@
-# [Bronze III] Farm - 16283 
+# [Bronze II] Farm - 16283 
 
 [문제 링크](https://www.acmicpc.net/problem/16283) 
 

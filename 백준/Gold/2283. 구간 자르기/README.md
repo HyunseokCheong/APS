@@ -14,7 +14,7 @@
 
 <p>수직선(數直線) 상에 구간 N개가 있다. 임의의 두 정수 A, B(A < B)를 정하여, 각 구간에서 A와 B 사이에 포함되지 않은 부분을 모두 잘라냈을 때 남는 부분들의 길이의 총합이 K가 되도록 하여라.</p>
 
-<p style="text-align: center;"><img alt="" height="146" src="https://www.acmicpc.net/JudgeOnline/upload/201008/rnrks.PNG" width="285"></p>
+<p style="text-align: center;"><img alt="" height="146" src="" width="285"></p>
 
 ### 입력 
 
