@@ -1,8 +1,3 @@
-'''
-0 빈 칸
-1 집
-2 치킨 집
-'''
 from itertools import combinations
 import sys
 
