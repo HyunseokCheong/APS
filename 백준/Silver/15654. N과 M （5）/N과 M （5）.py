@@ -1,3 +1,8 @@
+import sys
+
+input = sys.stdin.readline
+
+
 def solve(depth):
     if depth == n:
         print(*arr)
