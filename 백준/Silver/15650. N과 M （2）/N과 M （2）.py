@@ -1,3 +1,8 @@
+import sys
+
+input = sys.stdin.readline
+
+
 def solve(depth, start):
     if depth == n:
         print(*arr)
@@ -9,5 +14,4 @@ def solve(depth, start):
 
 m, n = map(int, input().split())
 arr = [0] * n
-
 solve(0, 0)
