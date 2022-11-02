@@ -1,24 +1,21 @@
-'''
-1 <= n <= 100000
-1 <= x <= 2000000
-'''
 import sys
 
 input = sys.stdin.readline
 
 n = int(input())
-arr = sorted(list(map(int, input().split())))
+arr = list(map(int, input().split()))
 x = int(input())
 
-s, e = 0, n - 1
-cnt = 0
+arr.sort()
+s, e, m, cnt = 0, n - 1, 0, 0
 
 while s < e:
-    res = arr[s] + arr[e]
-    if res == x:
+    m = arr[s] + arr[e]
+    if m == x:
         cnt += 1
-    if res < x:
+    if m <= x:
         s += 1
-        continue
-    e -= 1
+    else:
+        e -= 1
+
 print(cnt)
