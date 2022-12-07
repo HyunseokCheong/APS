@@ -1,12 +1,14 @@
 import java.io.*;
-import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        ArrayDeque<Integer> deque = new ArrayDeque<Integer>();
+
         int n = Integer.parseInt(br.readLine());
+        Deque<Integer> deque = new LinkedList<>();
         for (int i = 0; i < n; i++) {
             String[] input = br.readLine().split(" ");
             switch (input[0]) {
@@ -38,7 +40,6 @@ public class Main {
                 case "back":
                     if (deque.isEmpty()) bw.write(-1 + "\n");
                     else bw.write(deque.peekLast() + "\n");
-                    break;
             }
         }
         bw.flush();
