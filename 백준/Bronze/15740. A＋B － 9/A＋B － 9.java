@@ -1,13 +1,17 @@
 import java.io.*;
-import java.math.BigInteger;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        String[] input = br.readLine().split(" ");
-        BigInteger a = new BigInteger(input[0]);
-        BigInteger b = new BigInteger(input[1]);
-        System.out.println((a.add(b)).toString());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        Long a = Long.parseLong(st.nextToken());
+        Long b = Long.parseLong(st.nextToken());
+
+        bw.write((a + b) + "\n");
+        bw.flush();
     }
 }
