@@ -5,8 +5,8 @@ public class Main {
 
     // declare
     static int n;
-    static int answer;
-    static int[] dp;
+    static long answer;
+    static long[] dp;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -17,7 +17,7 @@ public class Main {
         n = Integer.parseInt(br.readLine());
 
         // solve
-        dp = new int[n + 1];
+        dp = new long[n + 1];
         answer = fibonacci(n);
 
         // print
@@ -26,16 +26,13 @@ public class Main {
         bw.close();
     }
 
-    static int fibonacci(int n) {
-        if (n == 0) {
-            return 0;
-        }
-        if (n == 1 || n == 2) {
-            return 1;
-        }
-        dp[1] = dp[2] = 1;
-        for (int i = 3; i <= n; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2];
+    static long fibonacci(int n) {
+        dp[0] = 0;
+        dp[1] = 1;
+        if (n > 1) {
+            for (int i = 2; i <= n; i++) {
+                dp[i] = dp[i - 1] + dp[i - 2];
+            }
         }
         return dp[n];
     }
