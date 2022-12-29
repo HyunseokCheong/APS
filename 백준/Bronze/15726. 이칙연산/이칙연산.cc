@@ -7,10 +7,6 @@ int main() {
     x = (double)(a * b) / c;
     y = ((double) a / b) * c;
     
-    if (x > y) {
-        cout << x;
-    } else {
-        cout << y;
-    }
+    cout << max(x, y);
     return 0;
 }
