@@ -1,10 +1,10 @@
-# [Bronze II] 슈퍼 마리오 - 2851 
+# [Bronze I] 슈퍼 마리오 - 2851 
 
 [문제 링크](https://www.acmicpc.net/problem/2851) 
 
 ### 성능 요약
 
-메모리: 2020 KB, 시간: 0 ms
+메모리: 14132 KB, 시간: 124 ms
 
 ### 분류
 
