@@ -2,7 +2,7 @@
  * A^2 = B^2 + N
  * 1 <= N <= 1,000
  *
- * 10000 * 10000 완전탐색
+ * 1 <= A, B <= 500
  */
 
 import java.io.*;
@@ -23,8 +23,8 @@ public class Main {
         
         // solve
         count = 0;
-        for (int i = 1; i < 10000; i++) {
-            for (int j = 1; j < 10000; j++) {
+        for (int i = 1; i < 501; i++) {
+            for (int j = 1; j < 501; j++) {
                 if (i * i == j * j + N) {
                     count++;
                 }
