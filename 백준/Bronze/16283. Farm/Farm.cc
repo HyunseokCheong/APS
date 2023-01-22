@@ -1,28 +1,25 @@
-#include <iostream>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-int main()
-{
-    int a, b, n, w;
-    int cnt = 0;
-    int goat, sheep;
-    cin >> a >> b >> n >> w;
-    for (int i = 1; i < n; i++)
-    {
-        if (a * i + b * (n - i) == w)
-        {
-            if (cnt == 2)
-            {
-                cout << -1 << '\n';
-                return 0;
-            }
-            cnt++;
-            sheep = i;
-            goat = n - i;
+
+int main() {
+    int A, B, N, W;
+    int count, X, Y;
+    cin >> A >> B >> N >> W;
+    
+    count = 0;
+    X = 0;
+    Y = 0;
+    for (int i = 1; i < N; i++) {
+        if(A * i + B * (N - i) == W) {
+            count++;
+            X = i;
+            Y = N - i;
         }
     }
-    if (!cnt)
-        cout << -1 << '\n';
-    else
-        cout << sheep << ' ' << goat << '\n';
+    if (count == 0 || count >= 2) {
+        cout << -1 << endl;
+    } else {
+        cout << X << " " << Y << endl;
+    }
+    return 0;
 }
