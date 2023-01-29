@@ -35,7 +35,7 @@ public class Main {
         
         // solve
         XY = GCD * LCM;
-        try {
+
             answer1 = GCD;
             answer2 = LCM;
             for (long i = 2 * GCD; i * i < XY; i += GCD) {
@@ -54,9 +54,7 @@ public class Main {
             bw.write(answer1 + " " + answer2 + "");
             bw.flush();
             bw.close();
-        } catch (Exception e) {
-            e.getMessage();
-        }
+
     }
     
     private static long gcd(long a, long b) {
