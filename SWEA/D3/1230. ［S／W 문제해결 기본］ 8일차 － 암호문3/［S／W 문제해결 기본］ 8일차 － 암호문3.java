@@ -16,7 +16,6 @@ public class Solution {
     static int             N;
     static int             Q;
     static List<Integer>   secretCode;
-    static List<Integer>   query;
     static String          command;
     static int             X, Y;
     
@@ -31,7 +30,6 @@ public class Solution {
             }
             Q     = Integer.parseInt(br.readLine());
             st    = new StringTokenizer(br.readLine());
-            query = new LinkedList<>();
             for (int i = 0; i < Q; i++) {
                 command = st.nextToken();
                 if (command.equals("I")) {
