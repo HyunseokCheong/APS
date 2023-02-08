@@ -1,4 +1,4 @@
-package codeTree.intermidiateMid.hashMap.quiz04;
+package codeTree.intermidate.mid.hashMap.quiz04;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,21 +10,21 @@ import java.util.StringTokenizer;
 
 public class Main {
     
-    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static BufferedReader  br = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter  bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
     // declare
-    static int N, M;
+    static int             N, M;
     static HashMap<String, Integer> stringIntegerHashMap;
     static HashMap<Integer, String> integerStringHashMap;
-    static String inputString;
-    static int inputInt;
+    static String                   inputString;
+    static int                      inputInt;
     
     public static void main(String[] args) throws IOException {
         // read
         st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
+        N  = Integer.parseInt(st.nextToken());
+        M  = Integer.parseInt(st.nextToken());
         
         // solve
         stringIntegerHashMap = new HashMap<>();

@@ -1,4 +1,4 @@
-package codeTree.intermidiateMid.hashMap.quiz05;
+package codeTree.intermidate.mid.hashMap.quiz05;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
