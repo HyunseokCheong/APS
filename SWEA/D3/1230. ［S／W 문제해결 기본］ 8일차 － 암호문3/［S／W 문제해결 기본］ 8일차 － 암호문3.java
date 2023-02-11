@@ -1,95 +1,85 @@
-#include <iostream>
-#include <list>
-#define endl "\n";
-using namespace std;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
-/**
- * I : insert S at X by Y
- * D : delete at X by Y
- * A : add S by Y
- * @Author HyunseokCheong
- * @Date 2023/02/11
- */
-
-int       origin_password_n, command_n, input_int;
-list<int> password;
-char      command;
-int       command_position, command_count, command_number;
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+public class Solution {
     
-    for (int test_case = 1; test_case <= 10; test_case++) {
-        
-        password.clear();
-        cin >> origin_password_n;
-        
-        // 원본 암호문 저장
-        for (int i = 0; i < origin_password_n; i++) {
+    // declare
+    static BufferedReader     br = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter     bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static StringTokenizer    st;
+    static ArrayList<Integer> arrayList;
+    static int                N, Q;
+    static char command;
+    static int  commandIndex, commandNumber, commandCount;
+    
+    public static void main(String[] args) throws IOException {
+        for (int t = 1; t < 11; t++) {
+            arrayList = new ArrayList<>();
             
-            cin >> input_int;
-            password.push_back(input_int);
-        }
-        
-        cin >> command_n;
-        
-        for (int i = 0; i < command_n; i++) {
+            N  = Integer.parseInt(br.readLine());
+            st = new StringTokenizer(br.readLine());
+            for (int i = 0; i < N; i++) {
+                arrayList.add(Integer.parseInt(st.nextToken()));
+            }
             
-            cin >> command;
-            
-            if (command == 'I') { // I : insert S at X by Y
+            Q  = Integer.parseInt(br.readLine());
+            st = new StringTokenizer(br.readLine());
+            for (int i = 0; i < Q; i++) {
+                command = st.nextToken().charAt(0);
                 
-                cin >> command_position >> command_count;
-                auto iterator = password.begin();
-                
-                for (int j = 0; j < command_position; j++) {
-                    iterator++;
-                }
-                
-                for (int j = 0; j < command_count; j++) {
-                    
-                    cin >> command_number;
-                    password.insert(iterator, command_number);
-                }
-                
-            } else if (command == 'D') { // D : delete at X by Y
-                
-                cin >> command_position >> command_count;
-                auto iterator = password.begin();
-                
-                for (int j = 0; j < command_position; j++) {
-                    
-                    iterator++;
-                }
-                
-                for (int j = 0; j < command_count; j++) {
-                    
-                    iterator = password.erase(iterator);
-                }
-                
-            } else if (command == 'A') { //  A : add S by Y
-                
-                cin >> command_count;
-                
-                for (int j = 0; j < command_count; j++) {
-                    
-                    cin >> command_number;
-                    password.push_back(command_number);
+                switch (command) {
+                    case 'I':
+                        insert();
+                        break;
+                    case 'D':
+                        delete();
+                        break;
+                    case 'A':
+                        add();
+                        break;
                 }
             }
+            bw.write("#" + t);
+            for (int i = 0; i < 10; i++) {
+                bw.write(" " + arrayList.get(i));
+            }
+            bw.write("\n");
         }
-        
-        cout << "#" << test_case << " ";
-        
-        for (int i = 0; i < 10; i++) {
-            
-            cout << password.front() << " ";
-            password.pop_front();
-        }
-        cout << endl;
+        bw.flush();
+        bw.close();
     }
     
-    return 0;
+    static void insert() {
+        commandIndex = Integer.parseInt(st.nextToken());
+        commandCount = Integer.parseInt(st.nextToken());
+        
+        for (int i = 0; i < commandCount; i++) {
+            commandNumber = Integer.parseInt(st.nextToken());
+            arrayList.add(commandIndex, commandNumber);
+            commandIndex++;
+        }
+    }
+    
+    static void delete() {
+        commandIndex = Integer.parseInt(st.nextToken());
+        commandCount = Integer.parseInt(st.nextToken());
+        
+        for (int i = 0; i < commandCount; i++) {
+            arrayList.remove(commandIndex);
+        }
+    }
+    
+    static void add() {
+        commandCount = Integer.parseInt(st.nextToken());
+        
+        for (int i = 0; i < commandCount; i++) {
+            commandNumber = Integer.parseInt(st.nextToken());
+            arrayList.add(commandNumber);
+        }
+    }
 }
