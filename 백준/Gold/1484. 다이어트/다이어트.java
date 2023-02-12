@@ -23,7 +23,7 @@ public class Main {
         end   = 2;
         flag  = false;
         
-        while (end <= 100000) {
+        while (end < 100000) {
             squareStart = start * start;
             squareEnd   = end * end;
             
