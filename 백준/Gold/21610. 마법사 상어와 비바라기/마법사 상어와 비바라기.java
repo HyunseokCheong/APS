@@ -9,21 +9,15 @@ import java.util.StringTokenizer;
 
 public class Main {
     
-    // declare
-    static BufferedReader  br                    = new BufferedReader(new InputStreamReader(System.in));
-    static BufferedWriter  bw                    = new BufferedWriter(new OutputStreamWriter(System.out));
+    static BufferedReader  br = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter  bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
-    static int             lengthOfField;
-    static int             numberOfQuery;
-    static int[][]         field;
-    static int             directionOfQuery;
-    static int             distanceOfQuery;
-    static boolean[][]     visited;
-    static Queue<Cloud>    clouds;
-    static int[]           directionRowOfMove    = {0, -1, -1, -1, 0, 1, 1, 1};
-    static int[]           directionColumnOfMove = {-1, -1, 0, 1, 1, 1, 0, -1};
-    static int             nextRow, nextColumn;
-    static int answer;
+    static int             lengthOfField, numberOfQuery, directionOfQuery, distanceOfQuery, nextRow, nextColumn, answer;
+    static Queue<Cloud> clouds;
+    static int[]        directionRowOfMove = {0, -1, -1, -1, 0, 1, 1, 1}, directionColumnOfMove = {-1, -1, 0, 1, 1, 1,
+            0, -1};
+    static int[][]     field;
+    static boolean[][] visited;
     
     static class Cloud {
         
