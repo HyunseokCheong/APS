@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+
+public class Main {
+    
+    static BufferedReader  br    = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter  bw    = new BufferedWriter(new OutputStreamWriter(System.out));
+    static StringTokenizer st;
+    static String          endl  = "\n";
+    static String          blank = " ";
+    static int             B; // 80 <= B <= 200 물이 끓기 시작하는 온도
+    
+    static int calc(int X) {
+        return 5 * X - 400;
+    }
+    
+    static void input() throws IOException {
+        B = Integer.parseInt(br.readLine());
+    }
+    
+    static void process() throws IOException {
+        bw.write(calc(B) + endl + Integer.compare(100, calc(B)) + endl);
+        bw.flush();
+        bw.close();
+    }
+    
+    public static void main(String[] args) throws IOException {
+        input();
+        process();
+    }
+    
+    static void stk() throws IOException {
+        st = new StringTokenizer(br.readLine());
+    }
+}
