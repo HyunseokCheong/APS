@@ -1,21 +1,8 @@
-s = input()
+t1, m1, t2, m2 = map(int, input().split())
 
-cu_count = 0
-dp_count = 0
+if t1 > t2 or (t1 == t2 and m1 > m2):
+    t2 += 24
 
-for i in range(len(s)):
-    cur = s[i]
-    if cur == 'C' or cur == 'U':
-        cu_count += 1
-    elif cur == 'D' or cur == 'P':
-        dp_count += 1
+t = (t2 - t1) * 60 + (m2 - m1)
 
-answer = ""
-
-if cu_count > (dp_count + 1) // 2:
-    answer += "U"
-
-if dp_count > 0:
-    answer += "DP"
-
-print(answer)
+print(t, t // 30)
