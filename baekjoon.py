@@ -1,3 +1,1 @@
-a, b = map(int, input().split())
-print(max(a + b, a - b))
-print(min(a + b, a - b))
+print(1 if int(input()) + int(input()) <= int(input()) + 0.5 else 0)
