@@ -1,10 +1,8 @@
-w = int(input())
-l = int(input())
-h = int(input())
+n, p = map(int, input().split())
+arr = [int(input()) for _ in range(n)]
 
-answer = 'bad'
+su = sum(arr)
+tp = p // su
 
-if min(l, w) / h >= 2 >= max(l, w) / min(l, w):
-    answer = 'good'
-
-print(answer)
+for i in range(n):
+    print(arr[i] * tp)
