@@ -1,8 +1,20 @@
-n, p = map(int, input().split())
-arr = [int(input()) for _ in range(n)]
+n = int(input())
 
-su = sum(arr)
-tp = p // su
+count = 0
 
-for i in range(n):
-    print(arr[i] * tp)
+while True:
+    if n == 0:
+        break
+    if n == 1:
+        count += 1
+        break
+
+    if n % 2 != 0:
+        count += 1
+        n = n // 2 + 1
+        # n -= 1
+    else:
+        count += 1
+        n //= 2
+
+print(count)
