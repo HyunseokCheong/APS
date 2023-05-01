@@ -1,11 +1,14 @@
-n = int(input())
+import sys
 
-for i in range(1, n + 1):
-    if i % 7 == 0 and i % 11 == 0:
-        print("Wiwat!")
-    elif i % 7 == 0:
-        print("Hurra!")
-    elif i % 11 == 0:
-        print("Super!")
-    else:
-        print(i)
+input = sys.stdin.readline
+
+day = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+day_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+m, d = map(int, input().split())
+
+date = 0
+for i in range(0, m - 1):
+    date += day_in_month[i]
+date = (date + d) % 7
+print(day[date])
