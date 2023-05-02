@@ -1,26 +1,15 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
-int main() {
-    int score;
-    cin >> score;
-    if (score >= 90)
-    {
-        cout << 'A';
-    }
-    else if (score >= 80)
-    {
-        cout << 'B';
-    }
-    else if (score >= 70)
-    {
-        cout << 'C';
-    }
-    else if (score >= 60)
-    {
-        cout << 'D';
-    }
-    else
-    {
-        cout << 'F';
-    }
+
+int main()
+{
+	int score;
+	cin >> score;
+
+	string grade = score >= 90 ? "A" : score >= 80 ? "B"
+								   : score >= 70   ? "C"
+								   : score >= 60   ? "D"
+												   : "F";
+	cout << grade << endl;
+	return 0;
 }
