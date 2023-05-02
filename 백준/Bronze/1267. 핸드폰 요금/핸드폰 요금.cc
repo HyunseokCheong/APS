@@ -1,22 +1,32 @@
-#include <bits/stdc++.h>
-
+#include <iostream>
 using namespace std;
 
-int main() {
-    int n, sec, y = 0, m = 0;
-    cin >> n;
+int main()
+{
+	int n;
+	int time;
+	int ySum = 0;
+	int mSum = 0;
+	cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		cin >> time;
+		ySum += (time / 30 + 1) * 10;
+		mSum += (time / 60 + 1) * 15;
+	}
 
-    for (int i = 0; i < n; i++) {
-        cin >> sec;
-        y += (sec / 30 + 1) * 10;
-        m += (sec / 60 + 1) * 15;
-    }
-    if (m < y) {
-        cout << 'M' << ' ' << m;
-    } else if (m > y) {
-        cout << 'Y' << ' ' << y;
-    } else {
-        cout << 'Y' << ' ' << 'M' << ' ' << m;
-    }
-    return 0;
+	if (ySum == mSum)
+	{
+		cout << "Y M " << ySum << endl;
+	}
+	else if (mSum < ySum)
+	{
+		cout << "M " << mSum << endl;
+	}
+	else
+	{
+		cout << "Y " << ySum << endl;
+	}
+
+	return 0;
 }
