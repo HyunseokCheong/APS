@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/181835. 조건에 맞게 수열 변환하기 3" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181839. 주사위 게임 1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181840. 정수 찾기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181842. 부분 문자열" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181843. 부분 문자열인지 확인하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181852. 뒤에서 5등 위로" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181854. 배열의 길이에 따라 다른 연산하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181863. rny＿string" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181864. 문자열 바꿔서 찾기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181873. 특정한 문자를 대문자로 바꾸기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181876. 소문자로 바꾸기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181877. 대문자로 바꾸기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181878. 원하는 문자열 찾기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181879. 길이에 따른 연산" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181882. 조건에 맞게 수열 변환하기 1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181884. n보다 커질 때까지 더하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181888. n개 간격의 원소들" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181896. 첫 번째로 나오는 음수" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181906. 접두사인지 확인하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181907. 문자열의 앞의 n글자" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181910. 문자열의 뒤의 n글자" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181915. 글자 이어 붙여 문자열 만들기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181920. 카운트 업" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181926. 수 조작하기 1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181927. 마지막 두 원소" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181928. 이어 붙인 수" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181929. 원소들의 곱과 합" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181933. flag에 따라 다른 값 반환하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181935. 홀짝에 따라 다른 값 반환하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181939. 더 크게 합치기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181940. 문자열 곱하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181941. 문자 리스트를 문자열로 변환하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181944. 홀짝 구분하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181945. 문자열 돌리기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/181952. 문자열 출력하기" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
