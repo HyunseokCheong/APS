@@ -3,31 +3,37 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 
 public class Main {
     
-    static BufferedReader br   = new BufferedReader(new InputStreamReader(System.in));
-    static BufferedWriter bw   = new BufferedWriter(new OutputStreamWriter(System.out));
-    static String         endl = "\n";
-    static int            N;
-    static int[][]        arr  = {{2, 3, 5, 7}, {23, 29, 31, 37, 53, 59, 71, 73, 79},
-            {233, 239, 293, 311, 313, 317, 373, 379, 593, 599, 719, 733, 739, 797},
-            {2333, 2339, 2393, 2399, 2939, 3119, 3137, 3733, 3739, 3793, 3797, 5939, 7193, 7331,
-                    7333, 7393},
-            {23333, 23339, 23399, 23993, 29399, 31193, 31379, 37337, 37339, 37397, 59393, 59399,
-                    71933, 73331, 73939},
-            {233993, 239933, 293999, 373379, 373393, 593933, 593993, 719333, 739391, 739393, 739397,
-                    739399},
-            {2339933, 2399333, 2939999, 3733799, 5939333, 7393913, 7393931, 7393933},
-            {23399339, 29399999, 37337999, 59393339, 73939133}};
+    static BufferedReader  br    = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter  bw    = new BufferedWriter(new OutputStreamWriter(System.out));
+    static StringTokenizer st;
+    static String          endl  = "\n";
+    static String          blank = " ";
+    static int             D;
+    static int             H;
+    static int             M;
+    static int             result;
     
     static void input() throws IOException {
-        N = Integer.parseInt(br.readLine());
+        stk();
+        D = Integer.parseInt(st.nextToken());
+        H = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+    }
+    
+    static int getResult() {
+        return D * 24 * 60 + H * 60 + M - (11 * 24 * 60 + 11 * 60 + 11);
     }
     
     static void process() throws IOException {
-        for (int num : arr[N - 1]) {
-            bw.write(num + endl);
+        result = getResult();
+        if (result < 0) {
+            bw.write("-1" + endl);
+        } else {
+            bw.write(result + endl);
         }
         bw.flush();
         bw.close();
@@ -36,5 +42,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         input();
         process();
+    }
+    
+    static void stk() throws IOException {
+        st = new StringTokenizer(br.readLine());
     }
 }

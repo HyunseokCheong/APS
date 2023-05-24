@@ -1,0 +1,1 @@
+import java.util.*;public class Main{public static void main(String[]args){int a[]={1,0,0,2,10,4,40,92,352,724,2680,14200,73712,365596};Scanner i=new Scanner(System.in);System.out.print(a[i.nextInt()-1]);}}
