@@ -12,29 +12,28 @@ public class Main {
     static StringTokenizer st;
     static String          endl  = "\n";
     static String          blank = " ";
-    static int             D;
-    static int             H;
-    static int             M;
-    static int             result;
+    static int             X;
+    static int             K;
+    static int             answer;
     
     static void input() throws IOException {
         stk();
-        D = Integer.parseInt(st.nextToken());
-        H = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-    }
-    
-    static int getResult() {
-        return D * 24 * 60 + H * 60 + M - (11 * 24 * 60 + 11 * 60 + 11);
+        X = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
     }
     
     static void process() throws IOException {
-        result = getResult();
-        if (result < 0) {
-            bw.write("-1" + endl);
+        if (K * 7 <= X) {
+            answer = K * 7000;
+        } else if (K * 3.5 <= X) {
+            answer = K * 3500;
+        } else if (K * 1.75 <= X) {
+            answer = K * 1750;
         } else {
-            bw.write(result + endl);
+            answer = 0;
         }
+        
+        bw.write(answer + endl);
         bw.flush();
         bw.close();
     }
