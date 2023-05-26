@@ -12,28 +12,50 @@ public class Main {
     static StringTokenizer st;
     static String          endl  = "\n";
     static String          blank = " ";
-    static int             X;
-    static int             K;
-    static int             answer;
+    static int             point;
+    static int[]           arr;
     
     static void input() throws IOException {
         stk();
-        X = Integer.parseInt(st.nextToken());
-        K = Integer.parseInt(st.nextToken());
+        arr   = new int[3];
+        point = 0;
+        for (int i = 0; i < 3; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+            point += arr[i];
+        }
+    }
+    
+    static char findUnique(int target) {
+        int findIndex = 0;
+        for (int i = 0; i < 3; i++) {
+            if (arr[i] == target) {
+                findIndex = i;
+                break;
+            }
+        }
+        switch (findIndex) {
+            case 0:
+                return 'A';
+            case 1:
+                return 'B';
+            case 2:
+                return 'C';
+        }
+        return ' ';
+    }
+    
+    static char getAnswer(int point) {
+        if (point == 0 || point == 3) {
+            return '*';
+        }
+        if (point == 1) {
+            return findUnique(1);
+        }
+        return findUnique(0);
     }
     
     static void process() throws IOException {
-        if (K * 7 <= X) {
-            answer = K * 7000;
-        } else if (K * 3.5 <= X) {
-            answer = K * 3500;
-        } else if (K * 1.75 <= X) {
-            answer = K * 1750;
-        } else {
-            answer = 0;
-        }
-        
-        bw.write(answer + endl);
+        bw.write(getAnswer(point) + endl);
         bw.flush();
         bw.close();
     }
