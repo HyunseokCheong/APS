@@ -1,0 +1,1 @@
+print(0 if int(input()) + 7 * int(input()) > 30 else 1)
