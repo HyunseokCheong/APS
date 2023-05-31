@@ -3,6 +3,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -12,34 +13,29 @@ public class Main {
     static StringTokenizer st;
     static String          endl  = "\n";
     static String          blank = " ";
-    static int             nextMonth;
-    static int             remain;
-    static int             need;
+    static long[]           arr;
+    static int             testCase;
+    static int             N;
     
-    static void input() throws IOException {
-        nextMonth = Integer.parseInt(br.readLine());
-        remain    = Integer.parseInt(br.readLine());
-    }
-    
-    static int solve() {
-        need = remain + 60 - nextMonth;
-        
-        if (need >= 0) {
-            return nextMonth * 1500;
+    static void setArr() {
+        arr    = new long[101];
+        arr[1] = 1;
+        arr[2] = 1;
+        arr[3] = 1;
+        for (int i = 4; i < 101; i++) {
+            arr[i] = arr[i - 3] + arr[i - 2];
         }
-        
-        return (remain + 60) * 1500 + (nextMonth - remain - 60) * 3000;
-    }
-    
-    static void process() throws IOException {
-        bw.write(solve() + endl);
-        bw.flush();
-        bw.close();
     }
     
     public static void main(String[] args) throws IOException {
-        input();
-        process();
+        setArr();
+        testCase = Integer.parseInt(br.readLine());
+        while (testCase-- > 0) {
+            N = Integer.parseInt(br.readLine());
+            bw.write(arr[N] + endl);
+        }
+        bw.flush();
+        bw.close();
     }
     
     static void stk() throws IOException {
