@@ -8,50 +8,58 @@ import java.util.StringTokenizer;
 
 public class Main {
     
-    static BufferedReader  br    = new BufferedReader(new InputStreamReader(System.in));
-    static BufferedWriter  bw    = new BufferedWriter(new OutputStreamWriter(System.out));
+    static BufferedReader  br       = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter  bw       = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
-    static String          endl  = "\n";
-    static String          blank = " ";
+    static String          endl     = "\n";
+    static String          blank    = " ";
     static int             N;
-    static int             M;
-    static int[]           arr;
-    static int             answer;
+    static long[]          arr;
+    static long[]          three    = new long[3];
+    static long            maxValue = Long.MAX_VALUE;
     
     static void input() throws IOException {
-        N   = Integer.parseInt(br.readLine());
-        M   = Integer.parseInt(br.readLine());
-        arr = new int[N];
+        N = Integer.parseInt(br.readLine());
         stk();
+        arr = new long[N];
         for (int i = 0; i < N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+            arr[i] = Long.parseLong(st.nextToken());
         }
     }
     
-    static int twoPointer() {
-        int result = 0;
-        
-        Arrays.sort(arr);
-        int L = 0;
+    static void solve(int F) {
+        int L = F + 1;
         int R = N - 1;
-        while (L != R) {
-            int sum = arr[L] + arr[R];
-            if (sum == M) {
-                result++;
-                L++;
-            } else if (sum < M) {
-                L++;
-            } else {
+        
+        while (L < R) {
+            
+            long sum    = arr[L] + arr[R] + arr[F];
+            long absSum = Math.abs(sum);
+            
+            if (absSum < maxValue) {
+                three[0] = arr[F];
+                three[1] = arr[L];
+                three[2] = arr[R];
+                maxValue = absSum;
+            }
+            
+            if (sum > 0) {
                 R--;
+            } else {
+                L++;
             }
         }
-        
-        return result;
     }
     
     static void process() throws IOException {
-        answer = twoPointer();
-        bw.write(answer + endl);
+        Arrays.sort(arr);
+        for (int i = 0; i < N - 2; i++) {
+            solve(i);
+        }
+        
+        for (int i = 0; i < 3; i++) {
+            bw.write(three[i] + blank);
+        }
         bw.flush();
         bw.close();
     }
