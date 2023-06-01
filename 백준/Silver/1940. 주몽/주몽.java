@@ -3,6 +3,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -27,20 +28,29 @@ public class Main {
         }
     }
     
-    static void process() throws IOException {
-        answer = 0;
-        // 완탐 코드
-        for (int i = 0; i < N; i++) {
-            for (int j = i + 1; j < N; j++) {
-                if (i == j) {
-                    continue;
-                }
-                
-                if (arr[i] + arr[j] == M) {
-                    answer++;
-                }
+    static int twoPointer() {
+        int result = 0;
+        
+        Arrays.sort(arr);
+        int L = 0;
+        int R = N - 1;
+        while (L != R) {
+            int sum = arr[L] + arr[R];
+            if (sum == M) {
+                result++;
+                L++;
+            } else if (sum < M) {
+                L++;
+            } else {
+                R--;
             }
         }
+        
+        return result;
+    }
+    
+    static void process() throws IOException {
+        answer = twoPointer();
         bw.write(answer + endl);
         bw.flush();
         bw.close();
