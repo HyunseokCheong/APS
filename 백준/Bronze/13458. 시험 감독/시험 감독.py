@@ -1,14 +1,17 @@
 n = int(input())
-a = list(map(int, input().split()))
+arr = list(map(int, input().split()))
 b, c = map(int, input().split())
 
-cnt = 0
-for i in range(n):
-    if a[i] <= b:
-        cnt += 1
+answer = 0
+for i in arr:
+    if i <= b:
+        answer += 1
     else:
-        if (a[i] - b) % c == 0:
-            cnt += (a[i] - b) // c + 1
+        i -= b
+        answer += 1
+        if i % c == 0:
+            answer += i // c
         else:
-            cnt += (a[i] - b) // c + 2
-print(cnt)
+            answer += i // c + 1
+
+print(answer)
