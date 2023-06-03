@@ -1,5 +1,5 @@
 def recur(depth):
-    global max_value
+    global max_number
     if depth == n:
         value = 0
         for i in range(n - 1):
@@ -21,7 +21,7 @@ def recur(depth):
 n = int(input())
 arr = list(map(int, input().split()))
 temp = []
-max_value = -1e9
+max_number = -1e9
 visited = [False] * n
 recur(0)
-print(max_value)
+print(max_number)

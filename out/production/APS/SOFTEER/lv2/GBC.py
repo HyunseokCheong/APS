@@ -21,7 +21,7 @@ for i in range(m):
         speed[j] = s
     h += l
 
-max_value = 0
+max_number = 0
 for i in range(101):
-    max_value = max(max_value, speed[i] - limit[i])
-print(max_value)
+    max_number = max(max_number, speed[i] - limit[i])
+print(max_number)
