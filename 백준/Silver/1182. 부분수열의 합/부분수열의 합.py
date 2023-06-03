@@ -11,9 +11,7 @@ def recur(depth, sum_value):
 
 n, s = map(int, input().split())
 arr = list(map(int, input().split()))
-count = 0
-if s == 0:
-    count = -1
+count = -1 if s == 0 else 0
 
 recur(0, 0)
 print(count)
