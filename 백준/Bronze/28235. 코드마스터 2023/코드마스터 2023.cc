@@ -5,25 +5,16 @@ using namespace std;
 
 int main()
 {
-	string input;
-	string output;
-	cin >> input;
-
-	if (input == "SONGDO")
+	string input[] = {"SONGDO", "CODE", "2023", "ALGORITHM"};
+	string output[] = {"HIGHSCHOOL", "MASTER", "0611", "CONTEST"};
+	string str;
+	cin >> str;
+	for (int i = 0; i < 4; i++)
 	{
-		output = "HIGHSCHOOL";
+		if (str == input[i])
+		{
+			cout << output[i] << endl;
+			return 0;
+		}
 	}
-	else if (input == "CODE")
-	{
-		output = "MASTER";
-	}
-	else if (input == "2023")
-	{
-		output = "0611";
-	}
-	else if (input == "ALGORITHM")
-	{
-		output = "CONTEST";
-	}
-	cout << output << endl;
 }
