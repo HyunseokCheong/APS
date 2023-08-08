@@ -3,151 +3,124 @@ import java.util.*;
 
 public class Main {
     
+    static final int[] DX = {-1, 1, 0, 0};
+    static final int[] DY = {0, 0, -1, 1};
+    static final char WATER = '*';
+    static final char STONE = 'X';
+    static final char GOAL = 'D';
+    static final char HEDGEHOG = 'S';
+    
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
-    static int r;
-    static int c;
+    static int rows, cols;
     static char[][] board;
-    static Queue<Location> waterQueue;
-    static Queue<Location> hedgehogQueue;
-    static boolean[][] waterVisited;
-    static boolean[][] hedgehogVisited;
-    static int[] dr = {-1, 1, 0, 0};
-    static int[] dc = {0, 0, -1, 1};
-    static Location goal;
+    static Queue<Location> waterQueue = new LinkedList<>();
+    static Queue<Location> hedgehogQueue = new LinkedList<>();
+    static boolean[][] waterVisited, hedgehogVisited;
+    static Location endLocation;
     
     static class Location {
-        int row;
-        int col;
-        int count;
+        int x, y, steps;
         
-        Location(int row, int col) {
-            this.row = row;
-            this.col = col;
+        Location(int x, int y) {
+            this(x, y, 0);
+        }
+        
+        Location(int x, int y, int steps) {
+            this.x = x;
+            this.y = y;
+            this.steps = steps;
         }
     }
     
     static void input() throws IOException {
-        stk();
-        r = Integer.parseInt(st.nextToken());
-        c = Integer.parseInt(st.nextToken());
-        board = new char[r][c];
-        waterQueue = new LinkedList<>();
-        hedgehogQueue = new LinkedList<>();
-        waterVisited = new boolean[r][c];
-        hedgehogVisited = new boolean[r][c];
-        for (int i = 0; i < r; i++) {
-            char[] input = br.readLine().toCharArray();
-            for (int j = 0; j < c; j++) {
-                char cur = input[j];
-                Location curLoc = new Location(i, j);
-                board[i][j] = cur;
+        st = new StringTokenizer(br.readLine());
+        rows = Integer.parseInt(st.nextToken());
+        cols = Integer.parseInt(st.nextToken());
+        
+        board = new char[rows][cols];
+        waterVisited = new boolean[rows][cols];
+        hedgehogVisited = new boolean[rows][cols];
+        
+        for (int i = 0; i < rows; i++) {
+            String line = br.readLine();
+            for (int j = 0; j < cols; j++) {
+                char currentChar = line.charAt(j);
+                board[i][j] = currentChar;
                 
-                if (cur == 'D') {
-                    goal = curLoc;
-                    continue;
-                }
-                
-                if (cur == 'S') {
-                    curLoc.count = 0;
-                    hedgehogQueue.add(curLoc);
-                    hedgehogVisited[i][j] = true;
-                }
-                
-                if (cur == '*') {
-                    waterQueue.add(curLoc);
-                    waterVisited[i][j] = true;
+                switch (currentChar) {
+                    case GOAL:
+                        endLocation = new Location(i, j);
+                        break;
+                    case HEDGEHOG:
+                        hedgehogQueue.add(new Location(i, j));
+                        hedgehogVisited[i][j] = true;
+                        break;
+                    case WATER:
+                        waterQueue.add(new Location(i, j));
+                        waterVisited[i][j] = true;
+                        break;
                 }
             }
         }
     }
     
-    static void solve() throws IOException {
-        int answer = Integer.MAX_VALUE;
-        int row, col, count, nextRow, nextCol, nextCount;
-        while (!hedgehogQueue.isEmpty()) {
-            // water
-            int waterQueueLength = waterQueue.size();
-            for (int i = 0; i < waterQueueLength; i++) {
-                Location curWater = waterQueue.poll();
-                row = curWater.row;
-                col = curWater.col;
-                for (int d = 0; d < 4; d++) {
-                    nextRow = row + dr[d];
-                    nextCol = col + dc[d];
-                    
-                    if (nextRow < 0 || nextRow >= r) {
-                        continue;
-                    }
-                    if (nextCol < 0 || nextCol >= c) {
-                        continue;
-                    }
-                    if (board[nextRow][nextCol] == '*') {
-                        continue;
-                    }
-                    if (board[nextRow][nextCol] == 'X') {
-                        continue;
-                    }
-                    if (board[nextRow][nextCol] == 'D') {
-                        continue;
-                    }
-                    if (waterVisited[nextRow][nextCol]) {
-                        continue;
-                    }
-                    
-                    board[nextRow][nextCol] = '*';
-                    waterQueue.add(new Location(nextRow, nextCol));
-                    waterVisited[nextRow][nextCol] = true;
-                }
-            }
+    static boolean isWithinBounds(int x, int y) {
+        return x >= 0 && x < rows && y >= 0 && y < cols;
+    }
+    
+    static void updateWaterLocations() {
+        int waterSize = waterQueue.size();
+        for (int i = 0; i < waterSize; i++) {
+            Location current = waterQueue.poll();
             
-            // hedgehog
-            int hedgehogQueueLength = hedgehogQueue.size();
-            for (int i = 0; i < hedgehogQueueLength; i++) {
-                Location curHedgeHog = hedgehogQueue.poll();
+            for (int dir = 0; dir < 4; dir++) {
+                int nextX = current.x + DX[dir];
+                int nextY = current.y + DY[dir];
                 
-                row = curHedgeHog.row;
-                col = curHedgeHog.col;
-                count = curHedgeHog.count;
-                
-                if (row == goal.row && col == goal.col) {
-                    answer = Math.min(answer, count);
-                    continue;
-                }
-                
-                for (int d = 0; d < 4; d++) {
-                    nextRow = row + dr[d];
-                    nextCol = col + dc[d];
-                    
-                    if (nextRow < 0 || nextRow >= r) {
-                        continue;
-                    }
-                    if (nextCol < 0 || nextCol >= c) {
-                        continue;
-                    }
-                    if (board[nextRow][nextCol] == '*') {
-                        continue;
-                    }
-                    if (board[nextRow][nextCol] == 'X') {
-                        continue;
-                    }
-                    if (hedgehogVisited[nextRow][nextCol]) {
-                        continue;
-                    }
-                    Location location = new Location(nextRow, nextCol);
-                    nextCount = count + 1;
-                    location.count = nextCount;
-                    hedgehogQueue.add(location);
-                    hedgehogVisited[nextRow][nextCol] = true;
+                if (isWithinBounds(nextX, nextY) && board[nextX][nextY] != WATER
+                        && board[nextX][nextY] != STONE && board[nextX][nextY] != GOAL
+                        && !waterVisited[nextX][nextY]) {
+                    board[nextX][nextY] = WATER;
+                    waterVisited[nextX][nextY] = true;
+                    waterQueue.add(new Location(nextX, nextY));
                 }
             }
         }
-        if (answer == Integer.MAX_VALUE) {
-            bw.write("KAKTUS" + "\n");
-        } else {
-            bw.write(answer + "\n");
+    }
+    
+    static int findHedgehogPath() {
+        while (!hedgehogQueue.isEmpty()) {
+            updateWaterLocations();
+            
+            int hedgehogSize = hedgehogQueue.size();
+            for (int i = 0; i < hedgehogSize; i++) {
+                Location current = hedgehogQueue.poll();
+                
+                if (current.x == endLocation.x && current.y == endLocation.y) {
+                    return current.steps;
+                }
+                
+                for (int dir = 0; dir < 4; dir++) {
+                    int nextX = current.x + DX[dir];
+                    int nextY = current.y + DY[dir];
+                    
+                    if (isWithinBounds(nextX, nextY) && board[nextX][nextY] != WATER
+                            && board[nextX][nextY] != STONE && !hedgehogVisited[nextX][nextY]) {
+                        hedgehogVisited[nextX][nextY] = true;
+                        hedgehogQueue.add(new Location(nextX, nextY, current.steps + 1));
+                    }
+                }
+            }
         }
+        return -1;
+    }
+    
+    static void solve() throws IOException {
+        int result = findHedgehogPath();
+        bw.write(result == -1 ? "KAKTUS" : Integer.toString(result));
+        bw.newLine();
     }
     
     public static void main(String[] args) throws IOException {
@@ -155,9 +128,5 @@ public class Main {
         solve();
         bw.flush();
         bw.close();
-    }
-    
-    static void stk() throws IOException {
-        st = new StringTokenizer(br.readLine());
     }
 }
