@@ -1,6 +1,5 @@
 import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
     
@@ -11,20 +10,29 @@ public class Main {
     public static void main(String[] args) throws IOException {
         st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
-        int X = Integer.parseInt(st.nextToken());
-        int[] arr = new int[N];
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int[] arr = new int[N + 1];
+        int[] reverse = new int[N + 1];
+        for (int i = 1; i < N + 1; i++) {
+            arr[i] = i;
+            reverse[i] = i;
         }
-        
-        int min = Integer.MAX_VALUE;
-        for (int i = 1; i < N; i++) {
-            min = Math.min(min, arr[i] + arr[i - 1]);
+        int s, e;
+        for (int i = 0; i < M; i++) {
+            st = new StringTokenizer(br.readLine());
+            s = Integer.parseInt(st.nextToken());
+            e = Integer.parseInt(st.nextToken());
+            // rotate s ~ e
+            for (int j = s; j < e + 1; j++) {
+                reverse[j] = arr[e - j + s];
+            }
+            for (int j = s; j < e + 1; j++) {
+                arr[j] = reverse[j];
+            }
         }
-        
-        long answer = (long) min * X;
-        bw.write(answer + "\n");
+        for (int i = 1; i < N + 1; i++) {
+            bw.write(arr[i] + " ");
+        }
         bw.flush();
         bw.close();
     }
