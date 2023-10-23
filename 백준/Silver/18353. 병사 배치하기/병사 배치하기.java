@@ -15,19 +15,19 @@ public class Main {
     
     static void input() throws IOException {
         n = Integer.parseInt(br.readLine());
-        soldiers = new int[n + 1];
+        soldiers = new int[n];
         st = new StringTokenizer(br.readLine());
-        for (int i = 1; i < n + 1; i++) {
+        for (int i = 0; i < n; i++) {
             soldiers[i] = Integer.parseInt(st.nextToken());
         }
     }
     
     static void process() throws IOException {
         result = 0;
-        dp = new int[n + 1];
+        dp = new int[n];
         Arrays.fill(dp, 1);
-        for (int i = 1; i < n + 1; i++) {
-            for (int j = 1; j < i; j++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
                 if (soldiers[j] > soldiers[i]) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
