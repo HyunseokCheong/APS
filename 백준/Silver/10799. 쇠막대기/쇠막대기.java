@@ -4,31 +4,47 @@ import java.util.Stack;
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static String input;
-    static Stack<Character> stack;
-    static int result;
+    static char[] line;
     
-    public static void main(String[] args) throws IOException {
-        input = br.readLine();
-        stack = new Stack<>();
-        result = 0;
-        for (int i = 0; i < input.length(); i++) {
-            char cur = input.charAt(i);
-            if (cur == '(') {
-                stack.push(cur);
+    static void input() throws IOException {
+        line = br.readLine().toCharArray();
+    }
+    
+    static void process() throws IOException {
+        int result = 0;
+        Stack<Character> stack = new Stack<>();
+        
+        for (int i = 0; i < line.length; i++) {
+            char c = line[i];
+            // 열린 괄호
+            if (c == '(') {
+                stack.push(c);
                 continue;
             }
-            if (input.charAt(i - 1) == '(') {
+            // 닫힌 괄호 - 레이져
+            if (c == ')' && line[i - 1] == '(') {
                 stack.pop();
                 result += stack.size();
                 continue;
             }
-            stack.pop();
-            result++;
+            // 닫힌 괄호 - 막대기
+            if (c == ')') {
+                stack.pop();
+                result++;
+            }
         }
         
         bw.write(result + "\n");
+    }
+    
+    static void output() throws IOException {
         bw.flush();
         bw.close();
+    }
+    
+    public static void main(String[] args) throws IOException {
+        input();
+        process();
+        output();
     }
 }
