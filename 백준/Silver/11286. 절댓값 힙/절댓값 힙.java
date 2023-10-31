@@ -1,50 +1,47 @@
 import java.io.*;
 import java.util.PriorityQueue;
-import java.util.StringTokenizer;
 
 public class Main {
-
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static StringTokenizer st;
+    static PriorityQueue<Integer> priorityQueue;
     static int n;
-    static int input;
-    static PriorityQueue<Point> pq;
-
-    static class Point {
-        int number, abs;
-
-        public Point(int number) {
-            this.number = number;
-            this.abs = Math.abs(number);
-        }
-    }
-
-    public static void main(String[] args) throws IOException {
-        pq = new PriorityQueue<>((o1, o2) -> o1.abs == o2.abs ? o1.number - o2.number : o1.abs - o2.abs);
+    
+    static void input() throws IOException {
         n = Integer.parseInt(br.readLine());
-        while (n-- > 0) {
-            input = Integer.parseInt(br.readLine());
-            if (input == 0) {
-                printQ();
+        priorityQueue = new PriorityQueue<>((o1, o2) -> {
+            int abs1 = Math.abs(o1);
+            int abs2 = Math.abs(o2);
+            if (abs1 == abs2) {
+                return o1 - o2;
+            }
+            return abs1 - abs2;
+        });
+    }
+    
+    static void process() throws IOException {
+        for (int i = 0; i < n; i++) {
+            int op = Integer.parseInt(br.readLine());
+            if (op == 0 && priorityQueue.isEmpty()) {
+                bw.write(0 + "\n");
                 continue;
             }
-            insertQ();
+            if (op == 0) {
+                bw.write(priorityQueue.poll() + "\n");
+                continue;
+            }
+            priorityQueue.add(op);
         }
-        br.close();
+    }
+    
+    static void output() throws IOException {
         bw.flush();
         bw.close();
     }
-
-    static void printQ() throws IOException {
-        if (pq.size() == 0) {
-            bw.write(0 + "\n");
-            return;
-        }
-        bw.write(pq.poll().number + "\n");
-    }
-
-    static void insertQ() {
-        pq.add(new Point(input));
+    
+    public static void main(String[] args) throws IOException {
+        input();
+        process();
+        output();
     }
 }
