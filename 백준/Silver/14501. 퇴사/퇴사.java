@@ -5,34 +5,41 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
-    static int n, maxValue;
-    static int[][] arr;
+    static int n;
+    static int[] memo;
+    static int[][] schedule;
     
     static void input() throws IOException {
         n = Integer.parseInt(br.readLine());
-        arr = new int[n][2];
+        schedule = new int[n][2];
+        memo = new int[n];
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            arr[i][0] = Integer.parseInt(st.nextToken());
-            arr[i][1] = Integer.parseInt(st.nextToken());
+            schedule[i][0] = Integer.parseInt(st.nextToken());
+            schedule[i][1] = Integer.parseInt(st.nextToken());
+            memo[i] = -1;
         }
     }
     
-    static void recur(int index, int value) {
-        if (index == n) {
-            maxValue = Math.max(maxValue, value);
-            return;
+    static int recur(int day) {
+        if (day >= n) {
+            return 0;
         }
-        if (index + arr[index][0] <= n) {
-            recur(index + arr[index][0], value + arr[index][1]);
+        if (memo[day] != -1) {
+            return memo[day];
         }
-        recur(index + 1, value);
+        int nextDay = day + schedule[day][0];
+        int takeCost = 0;
+        if (nextDay <= n) {
+            takeCost = schedule[day][1] + recur(nextDay);
+        }
+        int skipCost = recur(day + 1);
+        memo[day] = Math.max(takeCost, skipCost);
+        return memo[day];
     }
     
     static void process() throws IOException {
-        maxValue = 0;
-        recur(0, 0);
-        bw.write(maxValue + "\n");
+        bw.write(recur(0) + "\n");
     }
     
     static void output() throws IOException {
