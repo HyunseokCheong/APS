@@ -1,76 +1,67 @@
 import java.io.*;
 import java.util.PriorityQueue;
-import java.util.StringTokenizer;
 
 public class Main {
-    
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static StringTokenizer st;
     static int n;
-    static int[][] board;
+    static int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    static char[][] board;
     static boolean[][] visited;
+    static PriorityQueue<Point> pq;
     
-    static class Node {
-        int row, col, cnt;
+    static class Point {
+        int row;
+        int col;
+        int use;
         
-        public Node(int row, int col, int cnt) {
+        public Point(int row, int col, int use) {
             this.row = row;
             this.col = col;
-            this.cnt = cnt;
+            this.use = use;
         }
     }
     
-    static PriorityQueue<Node> pq = new PriorityQueue<>((o1, o2) -> o1.cnt - o2.cnt);
-    static int[] dr = {-1, 1, 0, 0};
-    static int[] dc = {0, 0, -1, 1};
-    static int result;
+    static void solve() throws IOException {
+        pq = new PriorityQueue<>((p1, p2) -> p1.use - p2.use);
+        visited = new boolean[n][n];
+        pq.add(new Point(0, 0, 0));
+        visited[0][0] = true;
+        while (!pq.isEmpty()) {
+            Point point = pq.poll();
+            int cr = point.row;
+            int cc = point.col;
+            int cu = point.use;
+            if (cr == n - 1 && cc == n - 1) {
+                bw.write(cu + "\n");
+                return;
+            }
+            for (int i = 0; i < 4; i++) {
+                int nr = cr + dir[i][0];
+                int nc = cc + dir[i][1];
+                int nu = cu;
+                if (nr < 0 || nr >= n || nc < 0 || nc >= n) {
+                    continue;
+                }
+                if (visited[nr][nc]) {
+                    continue;
+                }
+                if (board[nr][nc] == '0') {
+                    nu++;
+                }
+                pq.add(new Point(nr, nc, nu));
+                visited[nr][nc] = true;
+            }
+        }
+    }
     
     public static void main(String[] args) throws IOException {
         n = Integer.parseInt(br.readLine());
-        board = new int[n][n];
-        visited = new boolean[n][n];
+        board = new char[n][n];
         for (int i = 0; i < n; i++) {
-            String[] input = br.readLine().split("");
-            for (int j = 0; j < n; j++) {
-                board[i][j] = Integer.parseInt(input[j]);
-            }
+            board[i] = br.readLine().toCharArray();
         }
-        
-        result = Integer.MAX_VALUE;
-        pq.add(new Node(0, 0, 0));
-        visited[0][0] = true;
-        
-        while (!pq.isEmpty()) {
-            Node node = pq.poll();
-            
-            if (node.row == n - 1 && node.col == n - 1) {
-                result = Math.min(result, node.cnt);
-            }
-            
-            
-            for (int i = 0; i < 4; i++) {
-                int nextRow = node.row + dr[i];
-                int nextCol = node.col + dc[i];
-                
-                if (nextRow < 0 || nextRow == n || nextCol < 0 || nextCol == n) {
-                    continue;
-                }
-                if (visited[nextRow][nextCol]) {
-                    continue;
-                }
-                if (board[nextRow][nextCol] == 0) {
-                    pq.add(new Node(nextRow, nextCol, node.cnt + 1));
-                    visited[nextRow][nextCol] = true;
-                    continue;
-                }
-                
-                pq.add(new Node(nextRow, nextCol, node.cnt));
-                visited[nextRow][nextCol] = true;
-            }
-        }
-        
-        bw.write(result + "\n");
+        solve();
         bw.flush();
         bw.close();
     }
