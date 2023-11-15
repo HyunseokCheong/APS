@@ -1,25 +1,27 @@
 import java.io.*;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static StringTokenizer st;
+    
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-
+        st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
-        Queue<Integer> q = new LinkedList<>();
-        for (int i = 1; i < n + 1; i++) q.offer(i);
-
-        bw.write("<");
-        while (q.size() != 1) {
-            for (int i = 0; i < k - 1; i++) q.offer(q.poll());
-            bw.write(q.poll() + ", ");
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 1; i < n + 1; i++) {
+            queue.add(i);
         }
-        bw.write(q.poll() + ">");
+        bw.write("<");
+        while (queue.size() > 1) {
+            for (int i = 0; i < k - 1; i++) {
+                queue.add(queue.poll());
+            }
+            bw.write(queue.poll() + ", ");
+        }
+        bw.write(queue.poll() + ">\n");
         bw.flush();
         bw.close();
     }
