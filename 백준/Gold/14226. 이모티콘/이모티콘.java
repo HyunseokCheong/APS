@@ -10,12 +10,12 @@ public class Main {
     static Queue<Point> queue;
     
     static class Point {
-        int clipboard, total, time;
+        int d, c, t;
         
-        public Point(int clipboard, int total, int time) {
-            this.clipboard = clipboard;
-            this.total = total;
-            this.time = time;
+        public Point(int d, int c, int t) {
+            this.d = d;
+            this.c = c;
+            this.t = t;
         }
     }
     
@@ -24,44 +24,29 @@ public class Main {
     }
     
     static void process() throws IOException {
+        visited = new boolean[1001][1001]; // d, c
         queue = new LinkedList<>();
-        visited = new boolean[1001][1001]; // clipboard, total
-        
-        queue.offer(new Point(0, 1, 0));
-        visited[0][1] = true;
-        
+        queue.offer(new Point(1, 0, 0));
+        visited[1][0] = true;
         while (!queue.isEmpty()) {
             Point cur = queue.poll();
-            int curClipboard = cur.clipboard;
-            int curTotal = cur.total;
-            int curTime = cur.time;
-            
-            if (curTotal == s) {
-                bw.write(curTime + "\n");
+            if (cur.d == s) {
+                bw.write(cur.t + "\n");
                 return;
             }
-            // 1
-            int nextClipboard = curTotal;
-            int nextTotal = curTotal;
-            int nextTime = curTime + 1;
-            queue.offer(new Point(nextClipboard, nextTotal, nextTime));
-            // 2
-            if (cur.clipboard != 0 && cur.total + cur.clipboard <= s
-                    && !visited[cur.clipboard][cur.total + cur.clipboard]) {
-                nextClipboard = curClipboard;
-                nextTotal = curTotal + curClipboard;
-                queue.offer(new Point(nextClipboard, nextTotal, nextTime));
-                visited[nextClipboard][nextTotal] = true;
+            // 복사
+            queue.offer(new Point(cur.d, cur.d, cur.t + 1));
+            // 붙여넣기
+            if (cur.c > 0 && cur.d + cur.c <= s && !visited[cur.d + cur.c][cur.c]) {
+                queue.add(new Point(cur.d + cur.c, cur.c, cur.t + 1));
+                visited[cur.d + cur.c][cur.c] = true;
             }
-            // 3
-            if (curTotal >= 1 && !visited[curClipboard][curTotal - 1]) {
-                nextClipboard = curClipboard;
-                nextTotal = curTotal - 1;
-                queue.offer(new Point(nextClipboard, nextTotal, nextTime));
-                visited[nextClipboard][nextTotal] = true;
+            // 삭제
+            if (cur.d > 0 && !visited[cur.d - 1][cur.c]) {
+                queue.add(new Point(cur.d - 1, cur.c, cur.t + 1));
+                visited[cur.d - 1][cur.c] = true;
             }
         }
-        
     }
     
     static void output() throws IOException {
