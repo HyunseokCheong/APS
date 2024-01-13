@@ -1,7 +1,6 @@
 def find(arr, x) -> int:
-    if arr[x] == x:
-        return x
-    arr[x] = find(arr, parent[x])
+    if arr[x] != x:
+        arr[x] = find(arr, arr[x])
     return arr[x]
 
 
