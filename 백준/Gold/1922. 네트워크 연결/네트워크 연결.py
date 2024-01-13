@@ -1,27 +1,38 @@
-import heapq
+def find(arr, x) -> int:
+    if arr[x] == x:
+        return x
+    arr[x] = find(arr, parent[x])
+    return arr[x]
+
+
+def union(arr, x, y):
+    parent_x = find(arr, x)
+    parent_y = find(arr, y)
+    if parent_x == parent_y:
+        return
+    # 대소 관계를 비교하지 않으면 find 연산이 커질 수 있다.
+    if parent_x < parent_y:
+        arr[parent_y] = parent_x
+    else:
+        arr[parent_x] = parent_y
+
 
 n = int(input())
 m = int(input())
-tree = [[] for _ in range(n + 1)]
 
+edges = []
 for _ in range(m):
     a, b, w = map(int, input().split())
-    tree[a].append([w, b])
-    tree[b].append([w, a])
+    edges.append((w, a, b))
+edges.sort()
 
-hq = []
-visited = [False] * (n + 1)
-for i in tree[1]:
-    heapq.heappush(hq, (i[0], i[1]))
-visited[1] = True
-
+parent = [i for i in range(n + 1)]
 result = 0
-while hq:
-    w, b = heapq.heappop(hq)
-    if not visited[b]:
-        visited[b] = True
+
+for edge in edges:
+    w, a, b = edge
+    if find(parent, a) != find(parent, b):
+        union(parent, a, b)
         result += w
-        for i in tree[b]:
-            heapq.heappush(hq, (i[0], i[1]))
 
 print(result)
