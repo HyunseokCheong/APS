@@ -17,24 +17,25 @@ def union(x: int, y: int) -> None:
         parent[root_x] = root_y
 
 
-n, m = map(int, input().split())
-s, e = map(int, input().split())
+if __name__ == "__main__":
+    n, m = map(int, input().split())
+    s, e = map(int, input().split())
 
-edges = []
-for _ in range(m):
-    v1, v2, w = map(int, input().split())
-    heapq.heappush(edges, (-w, v1, v2))
+    edges = []
+    for _ in range(m):
+        v1, v2, w = map(int, input().split())
+        heapq.heappush(edges, (-w, v1, v2))
 
-parent = [i for i in range(n + 1)]
+    parent = [i for i in range(n + 1)]
 
-result = 0
-while edges:
-    w, v1, v2 = heapq.heappop(edges)
+    result = 0
+    while edges:
+        w, v1, v2 = heapq.heappop(edges)
 
-    if find(v1) != find(v2):
-        union(v1, v2)
+        if find(v1) != find(v2):
+            union(v1, v2)
 
-        if find(s) == find(e):
-            result = -w
-            break
-print(result)
+            if find(s) == find(e):
+                result = -w
+                break
+    print(result)
