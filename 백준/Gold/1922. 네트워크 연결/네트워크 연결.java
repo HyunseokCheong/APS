@@ -6,51 +6,68 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
-    static int N, M;
-    static int[] arr;
-    static int[][] networks;
-    static int result;
+    static int n, m, result;
+    static List<Edge>[] tree;
+    static boolean[] visited;
+    static PriorityQueue<Edge> edges;
     
-    public static void main(String[] args) throws IOException {
-        N = Integer.parseInt(br.readLine());
-        M = Integer.parseInt(br.readLine());
-        arr = new int[N + 1];
-        for (int i = 1; i <= N; i++) {
-            arr[i] = i;
+    static class Edge {
+        
+        int vertex;
+        int weight;
+        
+        public Edge(int vertex, int weight) {
+            this.vertex = vertex;
+            this.weight = weight;
         }
-        networks = new int[M][3];
-        for (int i = 0; i < M; i++) {
+    }
+    
+    static void input() throws IOException {
+        n = Integer.parseInt(br.readLine());
+        m = Integer.parseInt(br.readLine());
+        tree = new List[n + 1];
+        for (int i = 1; i < n + 1; i++) {
+            tree[i] = new ArrayList<>();
+        }
+        for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
-            networks[i][0] = Integer.parseInt(st.nextToken());
-            networks[i][1] = Integer.parseInt(st.nextToken());
-            networks[i][2] = Integer.parseInt(st.nextToken());
+            int vertex1 = Integer.parseInt(st.nextToken());
+            int vertex2 = Integer.parseInt(st.nextToken());
+            int weight = Integer.parseInt(st.nextToken());
+            tree[vertex1].add(new Edge(vertex2, weight));
+            tree[vertex2].add(new Edge(vertex1, weight));
         }
-        Arrays.sort(networks, Comparator.comparingInt(o -> o[2]));
+    }
+    
+    static void process() throws IOException {
         result = 0;
-        for (int[] network : networks) {
-            if (union(network[0], network[1])) {
-                result += network[2];
+        edges = new PriorityQueue<>((e1, e2) -> e1.weight - e2.weight);
+        visited = new boolean[n + 1];
+        
+        edges.addAll(tree[1]);
+        visited[1] = true;
+        
+        while (!edges.isEmpty()) {
+            Edge curEdge = edges.poll();
+            if (visited[curEdge.vertex]) {
+                continue;
             }
+            visited[curEdge.vertex] = true;
+            result += curEdge.weight;
+            
+            edges.addAll(tree[curEdge.vertex]);
         }
+    }
+    
+    static void output() throws IOException {
         bw.write(result + "\n");
         bw.flush();
         bw.close();
     }
     
-    static int find(int x) {
-        if (x == arr[x]) {
-            return x;
-        }
-        return arr[x] = find(arr[x]);
-    }
-    
-    static boolean union(int from, int to) {
-        int a = find(from);
-        int b = find(to);
-        if (a != b) {
-            arr[a] = b;
-            return true;
-        }
-        return false;
+    public static void main(String[] args) throws IOException {
+        input();
+        process();
+        output();
     }
 }
