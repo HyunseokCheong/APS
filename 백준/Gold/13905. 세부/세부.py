@@ -1,13 +1,13 @@
 import heapq
 
 
-def find(x) -> int:
+def find(x: int) -> int:
     if x != parent[x]:
         parent[x] = find(parent[x])
     return parent[x]
 
 
-def union(x, y):
+def union(x: int, y: int) -> None:
     root_x = find(x)
     root_y = find(y)
 
@@ -27,18 +27,14 @@ for _ in range(m):
 
 parent = [i for i in range(n + 1)]
 
-answer = 0
+result = 0
 while edges:
-    edge = heapq.heappop(edges)
-    w = -edge[0]
-    v1 = edge[1]
-    v2 = edge[2]
+    w, v1, v2 = heapq.heappop(edges)
 
     if find(v1) != find(v2):
         union(v1, v2)
 
         if find(s) == find(e):
-            answer = w
+            result = -w
             break
-
-print(answer)
+print(result)
