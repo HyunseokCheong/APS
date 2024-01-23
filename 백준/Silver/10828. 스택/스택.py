@@ -1,28 +1,20 @@
 import sys
 
 input = sys.stdin.readline
-n = int(input())
 
-stack = []
+if __name__ == "__main__":
+    stack = []
+    n = int(input())
+    for _ in range(n):
+        op = input().split()
 
-for _ in range(n):
-    c = list(input().split())
-    if c[0] == "push":
-        stack.append(c[1])
-    if c[0] == "pop":
-        if len(stack) == 0:
-            print(-1)
-        else:
-            print(stack.pop())
-    if c[0] == "size":
-        print(len(stack))
-    if c[0] == "empty":
-        if len(stack) == 0:
-            print(1)
-        else:
-            print(0)
-    if c[0] == "top":
-        if len(stack) == 0:
-            print(-1)
-        else:
-            print(stack[-1])
+        if op[0] == "push":
+            stack.append(op[1])
+        elif op[0] == "pop":
+            print(-1 if not stack else stack.pop())
+        elif op[0] == "size":
+            print(len(stack))
+        elif op[0] == "empty":
+            print(1 if not stack else 0)
+        elif op[0] == "top":
+            print(-1 if not stack else stack[-1])
