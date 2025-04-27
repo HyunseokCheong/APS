@@ -1,0 +1,5 @@
+n, m = map(int, input().split())
+s = min(n, m)
+l = max(n, m)
+answer = l - 1 + (l) * (s - 1)
+print(answer)
